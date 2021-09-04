@@ -1,4 +1,4 @@
-# Student resuls Web Application
+# Student results Web Application
 
 The main objective of Student Result System is to provide the examination results to the students and institutions in a simple manner. By a result analyzer with subject status and marks is an application tool for displaying the results in secure way.
 
