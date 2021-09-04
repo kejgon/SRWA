@@ -96,33 +96,33 @@ if (strlen($_SESSION['alogin']) == "") {
 
                     <div class="panel-body">
                         <?php if ($msg) { ?>
-                            <div role="alert">
+                            <div style='color: #66DE93' role="alert">
                                 <strong>Well done!</strong><?php echo htmlentities($msg); ?>
                             </div><?php } else if ($error) { ?>
-                            <divrole="alert">
+                            <div style='color: #D83A56' role="alert">
                                 <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
-                                </divrole=>
-                            <?php } ?>
-                            <form method="post">
-                                <div class="f">
-                                    <label for="default">Unit Name</label>
-                                    <div>
-                                        <input type="text" name="subjectname" class="form-control" id="default" placeholder="Subject Name" required="required">
-                                    </div>
-                                </div>
-
-                                <label>Unit Code</label>
+                            </div>
+                        <?php } ?>
+                        <form method="post">
+                            <div class="f">
+                                <label for="default">Unit Name</label>
                                 <div>
-                                    <input type="text" name="subjectcode" class="form-control" id="default" placeholder="Subject Code" required="required">
+                                    <input type="text" name="subjectname" class="form-control" id="default" placeholder="Subject Name" required="required">
                                 </div>
+                            </div>
+
+                            <label>Unit Code</label>
+                            <div>
+                                <input type="text" name="subjectcode" class="form-control" id="default" placeholder="Subject Code" required="required">
+                            </div>
 
 
 
 
 
-                                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 
-                            </form>
+                        </form>
 
                     </div>
                 </div>

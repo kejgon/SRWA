@@ -128,10 +128,10 @@ if (strlen($_SESSION['alogin']) == "") {
                                         </div>
                                         <div class="panel-body">
                                             <?php if ($msg) { ?>
-                                                <div class="alert alert-success left-icon-alert" role="alert">
+                                                <div style='color: #66DE93' role="alert">
                                                     <strong>Well done!</strong><?php echo htmlentities($msg); ?>
                                                 </div><?php } else if ($error) { ?>
-                                                <div class="alert alert-danger left-icon-alert" role="alert">
+                                                <div style='color: #D83A56' role="alert">
                                                     <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
                                                 </div>
                                             <?php } ?>

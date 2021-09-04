@@ -82,10 +82,10 @@ if (strlen($_SESSION['alogin']) == "") {
                 <h2 class="title">Manage Students</h2>
 
                 <?php if ($msg) { ?>
-                    <div class="alert alert-success left-icon-alert" role="alert">
+                    <div style='color: #66DE93' role="alert">
                         <strong>Well done!</strong><?php echo htmlentities($msg); ?>
                     </div><?php } else if ($error) { ?>
-                    <div class="alert alert-danger left-icon-alert" role="alert">
+                    <div style='color: #D83A56' role="alert">
                         <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
                     </div>
                 <?php } ?>
@@ -122,12 +122,10 @@ if (strlen($_SESSION['alogin']) == "") {
                                                 echo htmlentities('Blocked');
                                             }
                                             ?></td>
-                                        <td>
-                                            <?php if ($stts == '0') { ?>
-                                                <a href="manage-subjectcombination.php?acid=<?php echo htmlentities($result->scid); ?>" onclick="confirm('do you really want to activate this subject');"><i class="fa fa-check" title="Acticvate Record"></i> </a><?php } else { ?>
 
-                                                <a href="manage-subjectcombination.php?did=<?php echo htmlentities($result->scid); ?>" onclick="confirm('do you really want to deativate this subject');"><i class="fa fa-times" title="Deactivate Record"></i> </a>
-                                            <?php } ?>
+                                        <td>
+                                            <a href="edit-student.php?stid=<?php echo htmlentities($result->StudentId); ?>"><i class="fa fa-edit" title="Edit Record"></i> </a>
+
                                         </td>
 
                                     </tr>

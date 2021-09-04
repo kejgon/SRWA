@@ -80,12 +80,6 @@ include('includes/config.php');
                             </div>
                             <div class="panel-body p-20">
 
-
-
-
-
-
-
                                 <table class="table table-hover table-bordered">
                                     <thead>
                                         <tr>
@@ -100,13 +94,11 @@ include('includes/config.php');
                                     </thead>
 
 
-
-
                                     <tbody>
                                         <?php
                                         // Code for result
 
-                                        $query = "select t.StudentName,t.RollId,t.ClassId,t.cat1,t.cat2,t.exam,SubjectId,tblsubjects.SubjectName from (select sts.StudentName,sts.RollId,sts.ClassId,tr.cat1,tr.cat2,tr.exam,SubjectId from tblstudents as sts join  tblresult as tr on tr.StudentId=sts.StudentId) as t join tblsubjects on tblsubjects.id=t.SubjectId where (t.RollId=:rollid and t.ClassId=:classid)";
+                                        $query = "select t.StudentName,t.RollId,t.ClassId,t.Status,t.cat1,t.cat2,t.exam,SubjectId,tblsubjects.SubjectName from (select sts.StudentName,sts.RollId,sts.ClassId,sts.Status,tr.cat1,tr.cat2,tr.exam,SubjectId from tblstudents as sts join  tblresult as tr on tr.StudentId=sts.StudentId) as t join tblsubjects on tblsubjects.id=t.SubjectId where (t.RollId=:rollid and t.ClassId=:classid)";
                                         $query = $dbh->prepare($query);
                                         $query->bindParam(':rollid', $rollid, PDO::PARAM_STR);
                                         $query->bindParam(':classid', $classid, PDO::PARAM_STR);
@@ -116,51 +108,57 @@ include('includes/config.php');
                                         if ($countrow = $query->rowCount() > 0) {
 
                                             foreach ($results as $result) {
+                                                if ($result->Status == 1) {
+
+
 
                                         ?>
 
-                                                <tr>
-                                                    <td><?php echo htmlentities($cnt); ?></td>
-                                                    <td><?php echo htmlentities($result->SubjectName); ?></td>
-                                                    <td><?php echo htmlentities($result->cat1); ?></td>
-                                                    <td><?php echo htmlentities($result->cat2); ?></td>
-                                                    <td><?php echo htmlentities($result->exam); ?></td>
-                                                    <td><?php echo htmlentities($totalmarks = (($result->cat1) + ($result->cat2) + ($result->exam))); ?></td>
-                                                    <?php //Calculating the Grades
-                                                    $grade = "";
+                                                    <tr>
+                                                        <td><?php echo htmlentities($cnt); ?></td>
+                                                        <td><?php echo htmlentities($result->SubjectName); ?></td>
+                                                        <td><?php echo htmlentities($result->cat1); ?></td>
+                                                        <td><?php echo htmlentities($result->cat2); ?></td>
+                                                        <td><?php echo htmlentities($result->exam); ?></td>
+                                                        <td><?php echo htmlentities($totalmarks = (($result->cat1) + ($result->cat2) + ($result->exam))); ?></td>
 
-                                                    if ($totalmarks >= 70 && $totalmarks <= 100) {
-                                                        $grade = "A";
-                                                    } else if ($totalmarks >= 60 && $totalmarks <= 69) {
-                                                        $grade = "B";
-                                                    } else if ($totalmarks >= 50 && $totalmarks <= 59) {
-                                                        $grade = "C";
-                                                    } else if ($totalmarks >= 40 && $totalmarks <= 49) {
-                                                        $grade = "D";
-                                                    } else {
-                                                        $grade = "F";
-                                                    }
+                                                        <?php //Calculating the Grades
+                                                        $grade = "";
+                                                        if ($totalmarks >= 70 && $totalmarks <= 100) {
+                                                            $grade = "A";
+                                                        } else if ($totalmarks >= 60 && $totalmarks <= 69) {
+                                                            $grade = "B";
+                                                        } else if ($totalmarks >= 50 && $totalmarks <= 59) {
+                                                            $grade = "C";
+                                                        } else if ($totalmarks >= 40 && $totalmarks <= 49) {
+                                                            $grade = "D";
+                                                        } else {
+                                                            $grade = "F";
+                                                        }
 
-                                                    $cnt++;
+                                                        $cnt++;
 
-                                                    ?>
-                                                    <td><?php echo htmlentities($grade); ?></td>
-                                                </tr>
+                                                        ?>
+                                                        <td><?php echo htmlentities($grade); ?></td>
+                                                    </tr>
                                             <?php
 
+                                                } else {
+                                                    echo "
+                                                    <div role='alert' style='color:red'>
+                                                    <strong>Notice!</strong> You'r deactivated<br> Contact your academic department!!
+                                                    </div>
+                                                    ";
+                                                }
                                             }
                                             ?>
 
-                                            <tr id="last">
-                                                <th scope="row" colspan="2">Download Result</th>
-                                                <td><b><button id="download" type="button">Clear </button> </b></td>
-                                            </tr>
                                             <td><b><button type="button" onclick="window.print();">Print </button> </b></td>
                                             </tr>
 
                                         <?php } else { ?>
-                                            <div class="alert alert-warning left-icon-alert" role="alert">
-                                                <strong>Notice!</strong> Your result not Added yet
+                                            <div role="alert" style="color:red">
+                                                <strong>Notice!</strong> Your result not Added yet<br> Contact your academic department!!
                                             <?php }
                                             ?>
                                             </div>
@@ -173,8 +171,6 @@ include('includes/config.php');
                                         }
                                             ?>
                                             </div>
-
-
 
                                     </tbody>
                                 </table>

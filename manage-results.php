@@ -104,10 +104,10 @@ if (strlen($_SESSION['alogin']) == "") {
                                                 </div>
                                             </div>
                                             <?php if ($msg) { ?>
-                                                <div class="alert alert-success left-icon-alert" role="alert">
+                                                <div style='color: #66DE93' role="alert">
                                                     <strong>Well done!</strong><?php echo htmlentities($msg); ?>
                                                 </div><?php } else if ($error) { ?>
-                                                <div class="alert alert-danger left-icon-alert" role="alert">
+                                                <div style='color: #D83A56' role="alert">
                                                     <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
                                                 </div>
                                             <?php } ?>
@@ -118,24 +118,14 @@ if (strlen($_SESSION['alogin']) == "") {
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Student Name</th>
-                                                            <th>Roll Id</th>
-                                                            <th>Class</th>
+                                                            <th>Registration No</th>
+                                                            <th>Program</th>
                                                             <th>Reg Date</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Student Name</th>
-                                                            <th>Roll Id</th>
-                                                            <th>Class</th>
-                                                            <th>Reg Date</th>
-                                                            <th>Status</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </tfoot>
+
                                                     <tbody>
                                                         <?php $sql = "SELECT  distinct tblstudents.StudentName,tblstudents.RollId,tblstudents.RegDate,tblstudents.StudentId,tblstudents.Status,tblclasses.ClassName,tblclasses.Section from tblresult join tblstudents on tblstudents.StudentId=tblresult.StudentId  join tblclasses on tblclasses.id=tblresult.ClassId";
                                                         $query = $dbh->prepare($sql);

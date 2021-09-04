@@ -43,6 +43,48 @@ if (strlen($_SESSION['alogin']) == "") {
                 <link rel="stylesheet" href="css/custom.css?v=<?php echo time(); ?>" media="screen">
     </head>
 
+
+    <style>
+        input[type=text],
+        input[type=email],
+        select {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 50%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .main-page button {
+            width: 50%;
+            background-color: #80ED99;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .main-page button:hover {
+            background-color: #22577A;
+
+        }
+    </style>
+
     <body class="top-navbar-fixed">
         <div class="main-wrapper">
 
@@ -80,10 +122,10 @@ if (strlen($_SESSION['alogin']) == "") {
                                         </div>
                                         <div class="panel-body">
                                             <?php if ($msg) { ?>
-                                                <div class="alert alert-success left-icon-alert" role="alert">
+                                                <div style='color: #66DE93' role="alert">
                                                     <strong>Well done!</strong><?php echo htmlentities($msg); ?>
                                                 </div><?php } else if ($error) { ?>
-                                                <div class="alert alert-danger left-icon-alert" role="alert">
+                                                <div style='color: #D83A56' role="alert">
                                                     <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
                                                 </div>
                                             <?php } ?>
@@ -121,6 +163,7 @@ if (strlen($_SESSION['alogin']) == "") {
                                                             </div>
                                                         </div>
 
+                                                        <br><br>
 
 
                                                         <div class="form-group">
@@ -145,27 +188,30 @@ if (strlen($_SESSION['alogin']) == "") {
 
                                                             </div>
                                                         </div>
-
-
-
+                                                        <br><br>
                                                         <div class="form-group">
                                                             <label for="default" class="col-sm-2 control-label">Program</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" name="classname" class="form-control" id="classname" value="<?php echo htmlentities($result->ClassName) ?>(<?php echo htmlentities($result->Section) ?>)" readonly>
                                                             </div>
                                                         </div>
+                                                        <br><br>
+
                                                         <div class="form-group">
                                                             <label for="date" class="col-sm-2 control-label">DOB</label>
                                                             <div class="col-sm-10">
                                                                 <input type="date" name="dob" class="form-control" value="<?php echo htmlentities($result->DOB) ?>" id="date">
                                                             </div>
                                                         </div>
+                                                        <br><br>
+
                                                         <div class="form-group">
                                                             <label for="default" class="col-sm-2 control-label">Reg Date: </label>
                                                             <div class="col-sm-10">
                                                                 <?php echo htmlentities($result->RegDate) ?>
                                                             </div>
                                                         </div>
+                                                        <br><br>
 
                                                         <div class="form-group">
                                                             <label for="default" class="col-sm-2 control-label">Status</label>

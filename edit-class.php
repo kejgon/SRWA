@@ -87,58 +87,57 @@ if (strlen($_SESSION['alogin']) == "") {
 
 
             <?php if ($msg) { ?>
-                <div role="alert">
+                <div style='color: #66DE93' role="alert">
                     <strong>Well done!</strong><?php echo htmlentities($msg); ?>
                 </div><?php } else if ($error) { ?>
-                <divrole="alert">
+                <div style='color: #D83A56' role="alert">
                     <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
-                    </divrole=>
-                <?php } ?>
+                </div>
+            <?php } ?>
+            <form method="post">
+                <?php
+                $cid = intval($_GET['classid']);
+                $sql = "SELECT * from tblclasses where id=:cid";
+                $query = $dbh->prepare($sql);
+                $query->bindParam(':cid', $cid, PDO::PARAM_STR);
+                $query->execute();
+                $results = $query->fetchAll(PDO::FETCH_OBJ);
+                $cnt = 1;
+                if ($query->rowCount() > 0) {
+                    foreach ($results as $result) {   ?>
 
-                <form method="post">
-                    <?php
-                    $cid = intval($_GET['classid']);
-                    $sql = "SELECT * from tblclasses where id=:cid";
-                    $query = $dbh->prepare($sql);
-                    $query->bindParam(':cid', $cid, PDO::PARAM_STR);
-                    $query->execute();
-                    $results = $query->fetchAll(PDO::FETCH_OBJ);
-                    $cnt = 1;
-                    if ($query->rowCount() > 0) {
-                        foreach ($results as $result) {   ?>
-
-                            <div>
-                                <label for="success" class="control-label">Program Name</label>
-                                <div class="">
-                                    <input type="text" name="classname" value="<?php echo htmlentities($result->ClassName); ?>" required="required" class="form-control" id="success">
-                                    <span class="help-block">E.g > Computer Science, Law, Social Sciecnce etc ..</span>
-                                </div>
+                        <div>
+                            <label for="success" class="control-label">Program Name</label>
+                            <div class="">
+                                <input type="text" name="classname" value="<?php echo htmlentities($result->ClassName); ?>" required="required" class="form-control" id="success">
+                                <span class="help-block">E.g > Computer Science, Law, Social Sciecnce etc ..</span>
                             </div>
-                            <div class="form-group has-success">
-                                <label for="success" class="control-label">The year of the program</label>
-                                <div class="">
-                                    <input type="number" name="classnamenumeric" value="<?php echo htmlentities($result->ClassNameNumeric); ?>" required="required" class="form-control" id="success">
-                                    <span class="help-block">Eg > 1,2,4,5 etc</span>
-                                </div>
-                            </div>
-                            <div class="form-group has-success">
-                                <label for="success" class="control-label">Semster</label>
-                                <div class="">
-                                    <input type="text" name="section" value="<?php echo htmlentities($result->Section); ?>" class="form-control" required="required" id="success">
-                                    <span class="help-block">Eg- Semester 1, Semester 2</span>
-                                </div>
-                            </div>
-                    <?php }
-                    } ?>
-                    <div class="form-group has-success">
-
-                        <div class="">
-                            <button type="submit" name="update" class="btn btn-success btn-labeled">Update<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
                         </div>
+                        <div class="form-group has-success">
+                            <label for="success" class="control-label">The year of the program</label>
+                            <div class="">
+                                <input type="number" name="classnamenumeric" value="<?php echo htmlentities($result->ClassNameNumeric); ?>" required="required" class="form-control" id="success">
+                                <span class="help-block">Eg > 1,2,4,5 etc</span>
+                            </div>
+                        </div>
+                        <div class="form-group has-success">
+                            <label for="success" class="control-label">Semster</label>
+                            <div class="">
+                                <input type="text" name="section" value="<?php echo htmlentities($result->Section); ?>" class="form-control" required="required" id="success">
+                                <span class="help-block">Eg- Semester 1, Semester 2</span>
+                            </div>
+                        </div>
+                <?php }
+                } ?>
+                <div class="form-group has-success">
+
+                    <div class="">
+                        <button type="submit" name="update" class="btn btn-success btn-labeled">Update<span class="btn-label btn-label-right"><i class="fa fa-check"></i></span></button>
+                    </div>
 
 
 
-                </form>
+            </form>
 
 
         </div>
